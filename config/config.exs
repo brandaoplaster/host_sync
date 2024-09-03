@@ -11,6 +11,10 @@ config :host_sync,
   ecto_repos: [HostSync.Repo],
   generators: [binary_id: true]
 
+config :host_sync, HostSync.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :host_sync, HostSyncWeb.Endpoint,
   url: [host: "localhost"],
