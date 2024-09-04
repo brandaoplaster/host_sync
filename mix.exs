@@ -55,7 +55,10 @@ defmodule HostSync.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.18.0", only: :test},
       {:sobelow, "~> 0.13.0", only: :dev},
-      {:pbkdf2_elixir, "~> 2.1"}
+      {:pbkdf2_elixir, "~> 2.1"},
+      {:absinthe, "~> 1.7"},
+      {:absinthe_plug, "~> 1.5"},
+      {:absinthe_phoenix, "~> 2.0"}
     ]
   end
 
