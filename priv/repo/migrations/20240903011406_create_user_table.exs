@@ -7,8 +7,6 @@ defmodule HostSync.Repo.Migrations.CreateUserTable do
       add :name, :string, null: false
       add :email, :string, null: false
       add :password_hash, :string, null: false
-      add :profile_type, :string, null: false
-      add :bio, :text
 
       timestamps()
     end
