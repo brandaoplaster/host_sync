@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  host_sync:
+    build:
+      context: .
+      target: build
+    restart: unless-stopped
+    container_name: host_sync
+    command: mix phx.server
+    depends_on:
+      - host_sync_db
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/app
+    networks:
+      - host_sync_net
+
+  host_sync_db:
+    image: "postgres:13"
+    container_name: host_sync_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - "host_sync_db:/var/lib/postgresql/data"
+    networks:
+      - host_sync_net
+
+volumes:
+  host_sync_db:
+
+networks:
+  host_sync_net:
+    name: host_sync_net
