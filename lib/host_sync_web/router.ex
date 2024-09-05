@@ -5,8 +5,14 @@ defmodule HostSyncWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", HostSyncWeb do
+  scope "/api" do
     pipe_through :api
+
+    forward "/graphql", Absinthe.Plug, schema: HostSyncWeb.Graphql.Schema
+
+    if Mix.env() == :dev do
+      forward "/graphiql", Absinthe.Plug.GraphiQL, schema: HostSyncWeb.Graphql.Schema
+    end
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
