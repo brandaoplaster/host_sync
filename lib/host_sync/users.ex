@@ -101,4 +101,19 @@ defmodule HostSync.Users do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+  def authenticate(%{email: email, password: password}) do
+    user = Repo.get_by(User, email: String.downcase(email))
+
+    case valid_password?(user, password) do
+      true -> {:ok, user}
+      false -> {:error, "Incorrect login credentials"}
+    end
+  end
+
+  defp valid_password?(nil, _), do: Argon2.no_user_verify()
+
+  defp valid_password?(user, password) do
+    Argon2.verify_pass(password, user.password_hash)
+  end
 end
