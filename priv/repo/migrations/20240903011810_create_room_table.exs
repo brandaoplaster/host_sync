@@ -6,8 +6,10 @@ defmodule HostSync.Repo.Migrations.CreateRoomTable do
       add :id, :uuid, primary_key: true
       add :host_id, references(:users, type: :uuid, on_delete: :delete_all), null: false
       add :location, :string, null: false
-      add :price, :decimal, null: false
+      add :price, :integer, null: false
       add :description, :text
+      add :available, :boolean, default: true, null: false
+      add :room_type, :string, null: false
 
       timestamps()
     end
