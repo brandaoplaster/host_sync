@@ -1,6 +1,8 @@
 defmodule HostSync.Accommodations.Room do
   use Ecto.Schema
   import Ecto.Changeset
+
+  alias HostSync.Accommodations.Amenity
   alias HostSync.Accounts.User
 
   @primary_key {:id, :binary_id, autogenerate: true}
@@ -16,6 +18,7 @@ defmodule HostSync.Accommodations.Room do
     field :room_type, Ecto.Enum, values: [:single_room, :shared_room]
 
     belongs_to :host, User
+    many_to_many :amenities, Amenity, join_through: "rooms_amenities", on_replace: :delete
 
     timestamps()
   end
@@ -25,5 +28,6 @@ defmodule HostSync.Accommodations.Room do
     |> cast(params, @required_params ++ @optional_params)
     |> validate_number(:price, greater_than: 0)
     |> validate_inclusion(:preferred_room_type, [:single_room, :shared_room])
+    |> cast_assoc(:amenities)
   end
 end
