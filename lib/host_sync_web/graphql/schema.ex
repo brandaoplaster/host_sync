@@ -4,15 +4,17 @@ defmodule HostSyncWeb.Graphql.Schema do
   """
 
   use Absinthe.Schema
-  # use Absinthe.Relay.Schema, :classic
+  use Absinthe.Relay.Schema, :classic
+  use HostSyncWeb.Graphql.DataSource
 
-  import_types(HostSyncWeb.Graphql.Schema.Types)
-  # HostSyncWeb.Graphql.Resolvers.UserResolver
+  import_types(Absinthe.Type.Custom)
+  import_types(HostSyncWeb.Graphql.Schema.UserSchema)
+  import_types(HostSyncWeb.Graphql.Schema.AmenitySchema)
+  import_types(HostSyncWeb.Graphql.Schema.ProfileSchema)
+  import_types(HostSyncWeb.Graphql.Schema.RoomSchema)
 
+  @desc "The root of query operations"
   query do
-    @desc "Get a list of all users"
-    field :users, list_of(:user_type) do
-      resolve(&HostSyncWeb.Graphql.Resolvers.UserResolver.users/3)
-    end
+    import_fields(:user_queries)
   end
 end
