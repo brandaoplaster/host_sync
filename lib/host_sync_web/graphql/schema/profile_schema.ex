@@ -4,6 +4,7 @@ defmodule HostSyncWeb.Graphql.Schema.ProfileSchema do
   """
 
   use Absinthe.Schema.Notation
+  use Absinthe.Relay.Schema.Notation, :classic
 
   object :profile do
     field :id, :id
