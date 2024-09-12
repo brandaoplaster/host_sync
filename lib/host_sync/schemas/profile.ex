@@ -1,7 +1,7 @@
-defmodule HostSync.Accounts.Profile do
+defmodule HostSync.Schemas.Profile do
   use Ecto.Schema
   import Ecto.Changeset
-  alias HostSync.Accounts.User
+  alias HostSync.Schemas.User
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
