@@ -1,4 +1,4 @@
-defmodule HostSync.Accounts.User do
+defmodule HostSync.Schemas.User do
   use Ecto.Schema
   import Ecto.Changeset
 

@@ -1,8 +1,8 @@
-defmodule HostSync.Accommodations.Amenity do
+defmodule HostSync.Schemas.Amenity do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias HostSync.Accommodations.Room
+  alias HostSync.Schemas.Room
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
