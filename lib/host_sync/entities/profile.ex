@@ -3,6 +3,6 @@ defmodule HostSync.Entities.Profile do
   Profile public Entity
   """
 
-  alias HostSync.Accounts.Profile
+  alias HostSync.Schemas.Profile
   use HostSync.EntityManager, schema: Profile
 end

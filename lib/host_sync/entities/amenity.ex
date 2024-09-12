@@ -3,6 +3,6 @@ defmodule HostSync.Entities.Amenity do
   Emenity public Entity
   """
 
-  alias HostSync.Accommodations.Amenity
+  alias HostSync.Schemas.Amenity
   use HostSync.EntityManager, schema: Amenity
 end

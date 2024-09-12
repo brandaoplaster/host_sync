@@ -3,6 +3,6 @@ defmodule HostSync.Entities.Room do
   Room public Entity
   """
 
-  alias HostSync.Accommodations.Room
+  alias HostSync.Schemas.Room
   use HostSync.EntityManager, schema: Room
 end

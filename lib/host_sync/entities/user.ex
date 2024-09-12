@@ -3,6 +3,6 @@ defmodule HostSync.Entities.User do
   User public Entity
   """
 
-  alias HostSync.Accounts.User
+  alias HostSync.Schemas.User
   use HostSync.EntityManager, schema: User
 end
