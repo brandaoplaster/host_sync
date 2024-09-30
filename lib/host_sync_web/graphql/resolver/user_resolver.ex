@@ -1,4 +1,4 @@
-defmodule HostSyncWeb.Graphql.Types.UserResolver do
+defmodule HostSyncWeb.Graphql.Resolver.UserResolver do
   @moduledoc """
   Module for resolving user fields.
   """
