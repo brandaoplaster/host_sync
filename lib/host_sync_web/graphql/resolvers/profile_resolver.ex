@@ -1,4 +1,4 @@
-defmodule HostSyncWeb.Graphql.Resolver.ProfileResolver do
+defmodule HostSyncWeb.Graphql.Resolvers.ProfileResolver do
   @moduledoc """
   Module for resolving profile fields.
   """
