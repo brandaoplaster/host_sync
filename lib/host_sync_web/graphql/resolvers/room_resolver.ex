@@ -1,4 +1,4 @@
-defmodule HostSyncWeb.Graphql.Resolver.RoomResolver do
+defmodule HostSyncWeb.Graphql.Resolvers.RoomResolver do
   @moduledoc """
   Module for resolving room fields.
   """
