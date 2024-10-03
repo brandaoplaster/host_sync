@@ -7,6 +7,8 @@ defmodule HostSyncWeb.Graphql.Schema do
   use Absinthe.Relay.Schema, :classic
   use HostSyncWeb.Graphql.DataSource
 
+  alias HostSyncWeb.Graphql.Middlewares.HandleChangesetErrors
+
   import_types(Absinthe.Type.Custom)
   import_types(HostSyncWeb.Graphql.Schema.UserSchema)
   import_types(HostSyncWeb.Graphql.Schema.AmenitySchema)
@@ -22,5 +24,10 @@ defmodule HostSyncWeb.Graphql.Schema do
   @desc "The root of mutation operations"
   mutation do
     import_fields(:profile_mutations)
+  end
+
+  @impl Absinthe.Schema
+  def middleware(middleware, _, _) do
+    middleware ++ [HandleChangesetErrors]
   end
 end
