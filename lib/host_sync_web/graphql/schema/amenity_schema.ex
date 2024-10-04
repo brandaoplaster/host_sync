@@ -32,4 +32,18 @@ defmodule HostSyncWeb.Graphql.Schema.AmenitySchema do
       resolve(&HostSyncWeb.Graphql.Resolvers.AmenityResolver.update_amenity/3)
     end
   end
+
+  object :amenity_queries do
+    @desc "List all amenities"
+    field :amenities, list_of(:amenity) do
+      resolve(&HostSyncWeb.Graphql.Resolvers.AmenityResolver.list_all/3)
+    end
+
+    @desc "Get an amenity by ID"
+    field :amenity, type: :amenity do
+      arg :id, non_null(:id)
+
+      resolve(&HostSyncWeb.Graphql.Resolvers.AmenityResolver.get_by_id/3)
+    end
+  end
 end
