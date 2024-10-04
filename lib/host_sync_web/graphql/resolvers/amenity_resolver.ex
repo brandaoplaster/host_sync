@@ -18,6 +18,20 @@ defmodule HostSyncWeb.Graphql.Resolvers.AmenityResolver do
     |> handle_update_amenity()
   end
 
+  def list_all(_parent, _args, _context) do
+    case Amenity.all() do
+      [] -> {:error, "No amenities found"}
+      amenities -> {:ok, amenities}
+    end
+  end
+
+  def get_by_id(_parent, %{id: id}, _context) do
+    case Amenity.get(id) do
+      nil -> {:error, "Amenity not found"}
+      amenity -> {:ok, amenity}
+    end
+  end
+
   defp handle_create_amenity({:ok, amenity}), do: {:ok, amenity}
   defp handle_create_amenity({:error, changeset}), do: {:error, changeset}
 
