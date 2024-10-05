@@ -2,28 +2,27 @@ defmodule HostSyncWeb.Graphql.Resolvers.UserResolver do
   @moduledoc """
   Module for resolving user fields.
   """
-  alias HostSync.Users
+  alias HostSync.Entities.User
 
   @doc """
   Gets the currently authenticated user.
   """
-  def get_authenticated_user(_args, context) do
-    user =
-      context
-      |> get_user_id()
-
-    case user do
-      nil -> {:error, "User not found"}
-      user -> {:ok, user}
-    end
+  def create_user(_parent, args, _context) do
+    args
+    |> User.create()
+    |> handle_create_user
   end
 
-  defp get_user_id(%{context: %{current_user: user_id}}) do
-    user = Users.get_user!(user_id)
-
-    case user do
-      nil -> nil
-      user -> user
-    end
+  def update_user(_parent, %{id: id} = args, _context) do
+    id
+    |> User.get()
+    |> User.update(args)
+    |> handle_update_user
   end
+
+  defp handle_create_user({:ok, user}), do: {:ok, user}
+  defp handle_create_user({:error, changeset}), do: {:error, changeset}
+
+  defp handle_update_user({:ok, user}), do: {:ok, user}
+  defp handle_update_user({:error, changeset}), do: {:error, changeset}
 end
