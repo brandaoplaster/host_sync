@@ -17,7 +17,7 @@ defmodule HostSyncWeb.Graphql.Schema do
 
   @desc "The root of query operations"
   query do
-    import_fields(:user_queries)
+    # import_fields(:user_queries)
     import_fields(:profile_queries)
   end
 
