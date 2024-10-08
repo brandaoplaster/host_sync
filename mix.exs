@@ -61,7 +61,8 @@ defmodule HostSync.MixProject do
       {:absinthe_phoenix, "~> 2.0"},
       {:absinthe_relay, "~> 1.5.0"},
       {:argon2_elixir, "~> 4.0"},
-      {:dataloader, "~> 1.0.8"}
+      {:dataloader, "~> 1.0.8"},
+      {:guardian, "~> 2.3"}
     ]
   end
 

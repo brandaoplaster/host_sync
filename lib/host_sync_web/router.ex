@@ -5,6 +5,11 @@ defmodule HostSyncWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :graphql do
+    plug :accepts, ["json"]
+    plug HostSync.Auth.Guardian
+  end
+
   scope "/api" do
     pipe_through :api
 
